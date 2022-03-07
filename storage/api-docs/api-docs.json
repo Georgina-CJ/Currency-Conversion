@@ -1,0 +1,64 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Currency Conversion",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/currency_conversion": {
+            "get": {
+                "tags": [
+                    "Currency Conversion"
+                ],
+                "operationId": "51877fa5ad6bcc1209264d5926f4d6b5",
+                "parameters": [
+                    {
+                        "name": "source_currency",
+                        "in": "path",
+                        "description": "來源幣別",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "TWD",
+                                "JPY",
+                                "USD"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "target_currency",
+                        "in": "path",
+                        "description": "⽬標幣別",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "TWD",
+                                "JPY",
+                                "USD"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "amount",
+                        "in": "path",
+                        "description": "⾦額數字",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "display exchange rate and price"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
