@@ -14,7 +14,7 @@ class CurrencyConversionService
      *
      * @param string $sourceCurrency 來源幣別
      * @param string $targetCurrency ⽬標幣別
-     * @param string $amount         ⾦額數字
+     * @param float  $amount         ⾦額數字
      *
      * @return Collection
      */
