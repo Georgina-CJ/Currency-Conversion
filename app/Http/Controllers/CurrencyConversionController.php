@@ -36,9 +36,9 @@ class CurrencyConversionController extends Controller
     /**
      * 取得匯率轉換
      *
-     * @param Request $request 參數驗證
+     * @param GetCurrencyConversionRequest $request 參數驗證
      *
-     * @return GetCurrencyConversionResource|JsonResponse
+     * @return GetCurrencyConversionResource
      */
     /**
      * @OA\Get(
@@ -79,26 +79,11 @@ class CurrencyConversionController extends Controller
      *      )
      * )
      */
-    public function getCurrencyConversion(Request $request)
+    public function getCurrencyConversion(GetCurrencyConversionRequest $request): GetCurrencyConversionResource
     {
-        // TODO: 改傳入GetCurrencyConversionRequest並修正failedValidation的response
-        $validator = Validator::make($request->all(), $this->rules());
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-        $data   = $validator->validated();
+        $data   = $request->validated();
         $result = $this->service->exchangeCurrency($data['source_currency'], $data['target_currency'], $data['amount']);
 
         return new GetCurrencyConversionResource($result);
-    }
-
-    private function rules(): array
-    {
-        return [
-            'source_currency' => ['required', Rule::in(CurrencyEnum::getKeys())],
-            'target_currency' => ['required', Rule::in(CurrencyEnum::getKeys())],
-            'amount'          => ['required', 'numeric', 'regex:/^\d*(\.\d{1,2})?$/', 'min:0']
-        ];
     }
 }
