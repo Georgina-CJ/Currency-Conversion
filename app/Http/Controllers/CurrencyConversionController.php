@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\Http\Enums\CurrencyEnum;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Services\CurrencyConversionService;
 use App\Http\Requests\GetCurrencyConversionRequest;
 use App\Http\Resources\GetCurrencyConversionResource;
@@ -75,7 +70,25 @@ class CurrencyConversionController extends Controller
      *      ),
      *      @OA\Response(
      *          response="200",
-     *          description="display exchange rate and price"
+     *          description="display exchange rate and price",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="currency",
+     *                  type="string",
+     *                  default="USD"
+     *              ),
+     *              @OA\Property(
+     *                  property="exchange_amount",
+     *                  type="number",
+     *                  default=1.00
+     *              ),
+     *              @OA\Property(
+     *                  property="exchange_rate",
+     *                  type="number",
+     *                  default=0.38
+     *              )
+     *         )
      *      )
      * )
      */

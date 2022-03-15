@@ -52,7 +52,28 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "display exchange rate and price"
+                        "description": "display exchange rate and price",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "currency": {
+                                            "type": "string",
+                                            "default": "USD"
+                                        },
+                                        "exchange_amount": {
+                                            "type": "number",
+                                            "default": 1
+                                        },
+                                        "exchange_rate": {
+                                            "type": "number",
+                                            "default": 0.38
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
